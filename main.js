@@ -41,6 +41,8 @@ const generateHint = (guess) =>  {
       solutionArray[i] = null;
       
     }}
+
+
     // correctLetterLocations++ is the same as correctLetterLocations = correctLetterLocations + 1; 
   let correctLetters = 0;
   for (let i = 0; i < solutionArray.length; i++){
@@ -53,19 +55,26 @@ const generateHint = (guess) =>  {
       
     }
   }
-  return "red: " + correctLetterLocations + " white: " + correctLetters;
+  return correctLetterLocations + "-" + correctLetters;
 
 }
 
 /* Spec 3 - Add guess and hint to the board: Define a variable called hint that collects the returned value of generateHint(guess). 
 .push the guess and the hint (as a combined string) into the board.*/
 
-let hint = generateHint(guess);
+
 
 const mastermind = (guess) => {
-  solution = 'abcd'; // Comment this out to generate a random solution
+  // solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
-  if (guess === solution) {return 'You guessed it!'};
+  let hint = generateHint(guess);
+  board.push(guess + hint);
+  if (guess === solution) {return 'You guessed it!'}
+  else {
+    if (board.length < 10) {return "guess again"}
+    else {return 'You ran out of turns! The solution was' + solution}
+  }
+ 
   
 }
 
