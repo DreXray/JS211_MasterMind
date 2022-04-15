@@ -28,13 +28,45 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const generateHint = () =>  {
+
+const generateHint = (guess) =>  {
   // your code here
+  let guessArray = guess.split("");
+  let solutionArray = solution.split("");
+  // split("") elimates the spaces and returns the characters 
+  let correctLetterLocations = 0;
+  for (let i = 0; i < solutionArray.length; i++){
+    if (guessArray[i] === solutionArray[i]) {
+      correctLetterLocations++;
+      solutionArray[i] = null;
+      
+    }}
+    // correctLetterLocations++ is the same as correctLetterLocations = correctLetterLocations + 1; 
+  let correctLetters = 0;
+  for (let i = 0; i < solutionArray.length; i++){
+    let targetIndex = solutionArray.indexOf(guessArray[i])
+    // Using .indexOf, determine if the item at the current index in guessArray appears inside of solutionArray. 
+    // rewrite for better understanding ^^^^^^^^^^
+    if (targetIndex > -1 ) {
+      correctLetters++;
+      solutionArray[targetIndex] = null;
+      
+    }
+  }
+  return "red: " + correctLetterLocations + " white: " + correctLetters;
+
 }
+
+/* Spec 3 - Add guess and hint to the board: Define a variable called hint that collects the returned value of generateHint(guess). 
+.push the guess and the hint (as a combined string) into the board.*/
+
+let hint = generateHint(guess);
 
 const mastermind = (guess) => {
   solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
+  if (guess === solution) {return 'You guessed it!'};
+  
 }
 
 
